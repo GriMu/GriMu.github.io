@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="ChengZC">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="ChengZC">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="No madness, no devil, no Buddha!">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  
+    <title>spring-boot · ChengZC&#39;s Studio</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin="">
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin="">
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">ChengZC&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">spring-boot</a>
+            </div>
+    </div>
+    
+     <!--ChengZC's Studio.--> 
+      <ul class="pages_link">
+         <a class="home-link" href="/">首页</a>
+   	     <a class="home-link" href="/shuo">说说</a>
+         <a class="home-link" href="/friends">友情链接</a>
+      </ul>
+
+</header>
+ <!--添加私密文章-->             
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入查看密码') !== ''){
+                alert('密码不正确,请询问主编大大');
+                history.back();
+            }
+        }
+    })();
+</script>
+              
+            
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/random)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            spring-boot
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="spring-boot">spring-boot</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="java">java</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/01/11</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="Spring-Boot基础教程"><a href="#Spring-Boot基础教程" class="headerlink" title="Spring Boot基础教程"></a>Spring Boot基础教程</h1><p>本项目内容为Spring Boot教程程序样例。如您觉得该项目对您有用，欢迎点击右上方的<strong>Star</strong>按钮，给予支持！！</p>
+<ul>
+<li>我的博客：<a href="http://blog.didispace.com" target="_blank" rel="noopener">http://blog.didispace.com</a></li>
+<li><strong>我的小密圈（深度交流与问答）：<a href="https://t.xiaomiquan.com/zfEiY3v" target="_blank" rel="noopener">https://t.xiaomiquan.com/zfEiY3v</a></strong></li>
+<li>GitHub：<a href="https://github.com/dyc87112/SpringBoot-Learning" target="_blank" rel="noopener">https://github.com/dyc87112/SpringBoot-Learning</a></li>
+<li>Gitee：<a href="https://gitee.com/didispace/SpringBoot-Learning" target="_blank" rel="noopener">https://gitee.com/didispace/SpringBoot-Learning</a></li>
+<li>Spring For All社区：<a href="http://spring4all.com/" target="_blank" rel="noopener">http://spring4all.com/</a></li>
+<li>Spring Boot基础教程：<a href="http://blog.didispace.com/Spring-Boot%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" target="_blank" rel="noopener">http://blog.didispace.com/Spring-Boot%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</a></li>
+<li>Spring Cloud基础教程：<a href="http://blog.didispace.com/Spring-Cloud%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/" target="_blank" rel="noopener">http://blog.didispace.com/Spring-Cloud%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</a></li>
+</ul>
+<p><strong>声明：本人已放弃”Spring Cloud中国社区”，该社区的任何行为均与本人无关。<a href="http://spring4all.com/" target="_blank" rel="noopener">Spring For All社区</a>是新组建的关于Spring的纯技术交流社区（涵盖Spring Boot、Spring Cloud等内容），集诸多开源爱好者和技术大牛贡献内容和交流问题。我们不夸大、不装逼、做最纯粹的技术分享！！！</strong></p>
+<p><strong>优惠云服务推荐</strong></p>
+<ul>
+<li><a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=wxfqkr0o&amp;utm_source=wxfqkr0o" target="_blank" rel="noopener">阿里云：ECS云服务器2折起</a></li>
+<li><a href="https://cloud.tencent.com/redirect.php?redirect=1027&amp;cps_key=f6a8af1297bfac40b9d10ffa1270029a&amp;from=console" target="_blank" rel="noopener">腾讯云：轻松应对建站成本问题</a></li>
+</ul>
+<h2 id="Spring-Boot-2-0-新特性学习"><a href="#Spring-Boot-2-0-新特性学习" class="headerlink" title="Spring Boot 2.0 新特性学习"></a>Spring Boot 2.0 新特性学习</h2><p><strong>简介与概览</strong></p>
+<ul>
+<li><a href="http://blog.didispace.com/spring-boot-2-release/" target="_blank" rel="noopener">Spring Boot 2.0 正式发布，升还是不升呢？</a></li>
+<li><a href="http://blog.didispace.com/Spring-Boot-2-0-%E6%96%B0%E7%89%B9%E6%80%A7%E5%92%8C%E5%8F%91%E5%B1%95%E6%96%B9%E5%90%91/" target="_blank" rel="noopener">Spring Boot 2.0 新特性和发展方向</a></li>
+<li><a href="http://blog.didispace.com/Spring-Boot-2.0%E4%B8%8EJava-9/" target="_blank" rel="noopener">Spring Boot 2.0 与 Java 9</a></li>
+</ul>
+<p><strong>新特性详解</strong></p>
+<ul>
+<li><a href="http://blog.didispace.com/Spring-Boot-2-0-feature-1-relaxed-binding-2/" target="_blank" rel="noopener">Spring Boot 2.0 新特性（一）：配置绑定 2.0 全解析</a></li>
+<li><a href="http://blog.didispace.com/Spring-Boot-2-0-feature-2-ApplicationStartedEvent/" target="_blank" rel="noopener">Spring Boot 2.0 新特性（二）：新增事件ApplicationStartedEvent</a></li>
+</ul>
+<h2 id="Spring-Boot-基础教程（基于1-3-x-1-5-x）"><a href="#Spring-Boot-基础教程（基于1-3-x-1-5-x）" class="headerlink" title="Spring Boot 基础教程（基于1.3.x-1.5.x）"></a>Spring Boot 基础教程（基于1.3.x-1.5.x）</h2><h4 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h4><ul>
+<li>chapter1：<a href="http://blog.didispace.com/spring-boot-learning-1/" target="_blank" rel="noopener">基本项目构建（可作为工程脚手架），引入web模块，完成一个简单的RESTful API</a></li>
+<li><a href="http://blog.didispace.com/spring-initializr-in-intellij/" target="_blank" rel="noopener">使用Intellij中的Spring Initializr来快速构建Spring Boot/Cloud工程</a></li>
+</ul>
+<h4 id="工程配置"><a href="#工程配置" class="headerlink" title="工程配置"></a>工程配置</h4><ul>
+<li>chapter2-1-1：<a href="http://blog.didispace.com/springbootproperties/" target="_blank" rel="noopener">配置文件详解：自定义属性、随机数、多环境配置等</a></li>
+<li>chapter2-1-2：<a href="http://blog.didispace.com/Spring-Boot-2-0-feature-1-relaxed-binding-2/" target="_blank" rel="noopener">2.0 新特性（一）：配置绑定全解析</a></li>
+<li>chapter2-2-1：<a href="http://blog.didispace.com/Spring-Boot-2-0-feature-2-ApplicationStartedEvent/" target="_blank" rel="noopener">2.0 新特性（二）：新增事件ApplicationStartedEvent</a></li>
+</ul>
+<h4 id="Web开发"><a href="#Web开发" class="headerlink" title="Web开发"></a>Web开发</h4><ul>
+<li>chapter3-1-1：<a href="http://blog.didispace.com/springbootrestfulapi/" target="_blank" rel="noopener">构建一个较为复杂的RESTful API以及单元测试</a></li>
+<li>chapter3-1-2：<a href="http://blog.didispace.com/springbootweb/" target="_blank" rel="noopener">使用Thymeleaf模板引擎渲染web视图</a></li>
+<li>chapter3-1-3：<a href="http://blog.didispace.com/springbootweb/" target="_blank" rel="noopener">使用Freemarker模板引擎渲染web视图</a></li>
+<li>chapter3-1-4：<a href="http://blog.didispace.com/springbootweb/" target="_blank" rel="noopener">使用Velocity模板引擎渲染web视图</a></li>
+<li>chapter3-1-5：<a href="http://blog.didispace.com/springbootswagger2/" target="_blank" rel="noopener">使用Swagger2构建RESTful API</a></li>
+<li>chapter3-1-6：<a href="http://blog.didispace.com/springbootexception/" target="_blank" rel="noopener">统一异常处理</a></li>
+<li>chapter3-1-7：<a href="http://blog.didispace.com/Spring-Boot-And-Feign-Use-localdate/" target="_blank" rel="noopener">使用Java 8中LocalDate等时间日期类的问题解决</a></li>
+<li>chapter3-1-8：<a href="http://blog.didispace.com/spring-boot-xml-httpmessageconverter" target="_blank" rel="noopener">扩展XML请求和响应的支持</a></li>
+</ul>
+<h4 id="数据访问"><a href="#数据访问" class="headerlink" title="数据访问"></a>数据访问</h4><ul>
+<li>chapter3-2-1：<a href="http://blog.didispace.com/springbootdata1/" target="_blank" rel="noopener">使用JdbcTemplate</a></li>
+<li>chapter3-2-2：<a href="http://blog.didispace.com/springbootdata2/" target="_blank" rel="noopener">使用Spring-data-jpa简化数据访问层（推荐）</a></li>
+<li>chapter3-2-3：<a href="http://blog.didispace.com/springbootmultidatasource/" target="_blank" rel="noopener">多数据源配置（一）：JdbcTemplate</a></li>
+<li>chapter3-2-4：<a href="http://blog.didispace.com/springbootmultidatasource/" target="_blank" rel="noopener">多数据源配置（二）：Spring-data-jpa</a></li>
+<li>chapter3-2-5：<a href="http://blog.didispace.com/springbootredis/" target="_blank" rel="noopener">使用NoSQL数据库（一）：Redis</a></li>
+<li>chapter3-2-6：<a href="http://blog.didispace.com/springbootmongodb/" target="_blank" rel="noopener">使用NoSQL数据库（二）：MongoDB</a></li>
+<li>chapter3-2-7：<a href="http://blog.didispace.com/springbootmybatis/" target="_blank" rel="noopener">整合MyBatis</a></li>
+<li>chapter3-2-8：<a href="http://blog.didispace.com/mybatisinfo/" target="_blank" rel="noopener">MyBatis注解配置详解</a></li>
+<li>chapter3-2-9：<a href="http://blog.didispace.com/spring-boot-flyway-db-version/" target="_blank" rel="noopener">使用Flyway来管理数据库版本</a></li>
+<li>chapter3-2-10：<a href="http://blog.didispace.com/spring-boot-ldap-user/" target="_blank" rel="noopener">使用LDAP来统一管理用户信息</a></li>
+<li>chapter3-2-11：<a href="http://blog.didispace.com/springbootmongodb-plus/" target="_blank" rel="noopener">Spring Boot中增强对MongoDB的配置（连接池等）</a></li>
+</ul>
+<h4 id="事务管理"><a href="#事务管理" class="headerlink" title="事务管理"></a>事务管理</h4><ul>
+<li>chapter3-3-1：<a href="http://blog.didispace.com/springboottransactional/" target="_blank" rel="noopener">使用事务管理</a></li>
+<li>chapter3-3-2：[分布式事务（未完成）]</li>
+</ul>
+<h4 id="其他内容"><a href="#其他内容" class="headerlink" title="其他内容"></a>其他内容</h4><ul>
+<li>chapter4-1-1：<a href="http://blog.didispace.com/springbootscheduled/" target="_blank" rel="noopener">使用@Scheduled创建定时任务</a></li>
+<li>chapter4-1-2：<a href="http://blog.didispace.com/springbootasync/" target="_blank" rel="noopener">使用@Async实现异步调用</a></li>
+<li>chapter4-1-3：<a href="http://blog.didispace.com/springbootasync-2/" target="_blank" rel="noopener">使用@Async实现异步调用：自定义线程池</a></li>
+<li>chapter4-1-4：<a href="http://blog.didispace.com/springbootasync-3/" target="_blank" rel="noopener">使用@Async实现异步调用：资源优雅关闭</a></li>
+<li>chapter4-1-5：<a href="http://blog.didispace.com/springbootasync-4/" target="_blank" rel="noopener">使用@Async实现异步调用：使用Future以及定义超时</a></li>
+</ul>
+<h4 id="日志管理"><a href="#日志管理" class="headerlink" title="日志管理"></a>日志管理</h4><ul>
+<li>chapter4-2-1：<a href="http://blog.didispace.com/springbootlog/" target="_blank" rel="noopener">默认日志的配置</a></li>
+<li>chapter4-2-2：<a href="http://blog.didispace.com/springbootlog4j/" target="_blank" rel="noopener">使用log4j记录日志</a></li>
+<li>chapter4-2-3：<a href="http://blog.didispace.com/springbootlog4jmuilt/" target="_blank" rel="noopener">对log4j进行多环境不同日志级别的控制</a></li>
+<li>chapter4-2-4：<a href="http://blog.didispace.com/springbootaoplog/" target="_blank" rel="noopener">使用AOP统一处理Web请求日志</a></li>
+<li>chapter4-2-5：<a href="http://blog.didispace.com/springbootlog4jmongodb/" target="_blank" rel="noopener">使用log4j记录日志到MongoDB</a></li>
+<li>chapter4-2-6：<a href="http://blog.didispace.com/spring-boot-1-5-x-feature-1/" target="_blank" rel="noopener">Spring Boot 1.5.x新特性：动态修改日志级别</a>]</li>
+</ul>
+<h4 id="安全管理"><a href="#安全管理" class="headerlink" title="安全管理"></a>安全管理</h4><ul>
+<li>chapter4-3-1：<a href="http://blog.didispace.com/springbootsecurity/" target="_blank" rel="noopener">使用Spring Security</a></li>
+<li>chapter4-3-2：[使用Spring Session（未完成）]</li>
+</ul>
+<h4 id="缓存支持"><a href="#缓存支持" class="headerlink" title="缓存支持"></a>缓存支持</h4><ul>
+<li>chapter4-4-1：<a href="http://blog.didispace.com/springbootcache1/" target="_blank" rel="noopener">注解配置与EhCache使用</a></li>
+<li>chapter4-4-2：<a href="http://blog.didispace.com/springbootcache2/" target="_blank" rel="noopener">使用Redis做集中式缓存</a></li>
+</ul>
+<h4 id="邮件发送"><a href="#邮件发送" class="headerlink" title="邮件发送"></a>邮件发送</h4><ul>
+<li>chapter4-5-1：<a href="http://blog.didispace.com/springbootmailsender/" target="_blank" rel="noopener">实现邮件发送：简单邮件、附件邮件、嵌入资源的邮件、模板邮件</a></li>
+</ul>
+<h4 id="消息服务"><a href="#消息服务" class="headerlink" title="消息服务"></a>消息服务</h4><ul>
+<li>chapter5-1-1：[JMS（未完成）]</li>
+<li>chapter5-2-1：<a href="http://blog.didispace.com/spring-boot-rabbitmq/" target="_blank" rel="noopener">Spring Boot中使用RabbitMQ</a></li>
+</ul>
+<h4 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h4><ul>
+<li>chapter6-1-1：<a href="http://blog.didispace.com/spring-statemachine/" target="_blank" rel="noopener">使用Spring StateMachine框架实现状态机</a></li>
+<li><a href="http://blog.didispace.com/spring-boot-actuator-1/" target="_blank" rel="noopener">Spring Boot Actuator监控端点小结</a></li>
+<li><a href="http://blog.didispace.com/spring-boot-actuator-without-boot/" target="_blank" rel="noopener">在传统Spring应用中使用spring-boot-actuator模块提供监控端点</a></li>
+<li><a href="http://blog.didispace.com/spring-boot-run-backend/" target="_blank" rel="noopener">Spring Boot应用的后台运行配置</a></li>
+<li><a href="http://blog.didispace.com/spring-boot-banner/" target="_blank" rel="noopener">Spring Boot自定义Banner</a></li>
+</ul>
+<h4 id="Dubbo进行服务治理"><a href="#Dubbo进行服务治理" class="headerlink" title="Dubbo进行服务治理"></a>Dubbo进行服务治理</h4><ul>
+<li>chapter9-2-1：<a href="https://gitee.com/didispace/SpringBoot-Learning/tree/master/Chapter9-2-1" target="_blank" rel="noopener">Spring Boot中使用Dubbo进行服务治理</a></li>
+<li>chapter9-2-2：<a href="https://gitee.com/didispace/SpringBoot-Learning/tree/master/Chapter9-2-2" target="_blank" rel="noopener">Spring Boot与Dubbo中管理服务依赖</a></li>
+</ul>
+<h2 id="开源项目推荐"><a href="#开源项目推荐" class="headerlink" title="开源项目推荐"></a>开源项目推荐</h2><ul>
+<li>我的《Spring Cloud基础教程》：<a href="https://github.com/dyc87112/SpringCloud-Learning" target="_blank" rel="noopener">https://github.com/dyc87112/SpringCloud-Learning</a></li>
+<li>泥瓦匠Spring Boot学习案例：<a href="https://git.oschina.net/jeff1993/springboot-learning-example" target="_blank" rel="noopener">https://git.oschina.net/jeff1993/springboot-learning-example</a></li>
+</ul>
+<h2 id="其他推荐"><a href="#其他推荐" class="headerlink" title="其他推荐"></a>其他推荐</h2><ul>
+<li>Spring Boot Reference Guide：<a href="http://blog.didispace.com/books/spring-boot-reference/" target="_blank" rel="noopener">http://blog.didispace.com/books/spring-boot-reference/</a></li>
+</ul>
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://www-1256525464.cos-website.ap-chengdu.myqcloud.com">ChengZC</a>
+            </p><p>原文链接：<a href="http://www-1256525464.cos-website.ap-chengdu.myqcloud.com/2019/01/11/spring-boot/">http://www-1256525464.cos-website.ap-chengdu.myqcloud.com/2019/01/11/spring-boot/</a>
+            </p><p>发表日期：<a href="http://www-1256525464.cos-website.ap-chengdu.myqcloud.com/2019/01/11/spring-boot/">January 11th 2019, 12:22:59 am</a>
+            </p><p>更新日期：<a href="http://www-1256525464.cos-website.ap-chengdu.myqcloud.com/2019/01/11/spring-boot/">January 11th 2019, 12:29:40 am</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/01/11/Markdown基本语法/" title="Markdown基本语法">
+                    <div class="nextTitle">Markdown基本语法</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/01/10/hexo-theme-archer/" title="hexo-theme-archer">
+                    <div class="prevTitle">hexo-theme-archer</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80MjA4NS8xODYzMg==">
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:1192353207@qq.com" class="iconfont-archer email" title="email"></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/GriMu" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title="wechat">
+                  
+                  <img class="profile-qr" src="/assets/IMG_2486.JPG">
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title="qq">
+                  
+                  <img class="profile-qr" src="/assets/IMG_2484.JPG">
+                </span>
+            
+        
+    
+        
+    
+        
+            
+                <a href="//weibo.com/3453541994" class="iconfont-archer weibo" target="_blank" title="weibo"></a>
+            
+        
+    
+        
+            
+                <a href="//www.zhihu.com/people/wo-cai-34/activities" class="iconfont-archer zhihu" target="_blank" title="zhihu"></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>        
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: 你是本站第 <span id="busuanzi_value_site_pv"></span> 位读者，有不懂的地方欢迎评论哦！ :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-Boot基础教程"><span class="toc-number">1.</span> <span class="toc-text">Spring Boot基础教程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Boot-2-0-新特性学习"><span class="toc-number">1.1.</span> <span class="toc-text">Spring Boot 2.0 新特性学习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Boot-基础教程（基于1-3-x-1-5-x）"><span class="toc-number">1.2.</span> <span class="toc-text">Spring Boot 基础教程（基于1.3.x-1.5.x）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#快速入门"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">快速入门</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#工程配置"><span class="toc-number">1.2.0.2.</span> <span class="toc-text">工程配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Web开发"><span class="toc-number">1.2.0.3.</span> <span class="toc-text">Web开发</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据访问"><span class="toc-number">1.2.0.4.</span> <span class="toc-text">数据访问</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#事务管理"><span class="toc-number">1.2.0.5.</span> <span class="toc-text">事务管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他内容"><span class="toc-number">1.2.0.6.</span> <span class="toc-text">其他内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#日志管理"><span class="toc-number">1.2.0.7.</span> <span class="toc-text">日志管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安全管理"><span class="toc-number">1.2.0.8.</span> <span class="toc-text">安全管理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#缓存支持"><span class="toc-number">1.2.0.9.</span> <span class="toc-text">缓存支持</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#邮件发送"><span class="toc-number">1.2.0.10.</span> <span class="toc-text">邮件发送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#消息服务"><span class="toc-number">1.2.0.11.</span> <span class="toc-text">消息服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他功能"><span class="toc-number">1.2.0.12.</span> <span class="toc-text">其他功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Dubbo进行服务治理"><span class="toc-number">1.2.0.13.</span> <span class="toc-text">Dubbo进行服务治理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开源项目推荐"><span class="toc-number">1.3.</span> <span class="toc-text">开源项目推荐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他推荐"><span class="toc-number">1.4.</span> <span class="toc-text">其他推荐</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 5
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/11</span><a class="archive-post-title" href="/2019/01/11/Markdown基本语法/">Markdown基本语法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/11</span><a class="archive-post-title" href="/2019/01/11/spring-boot/">spring-boot</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/10</span><a class="archive-post-title" href="/2019/01/10/hexo-theme-archer/">hexo-theme-archer</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/10</span><a class="archive-post-title" href="/2019/01/10/hello-world/">Hello World</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href="/2018/10/18/longrise/">如何快速搭建hexo博客</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="hexo"><span class="iconfont-archer">&#xe606;</span>hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
+    
+        <span class="sidebar-tag-name" data-tags="同步"><span class="iconfont-archer">&#xe606;</span>同步</span>
+    
+        <span class="sidebar-tag-name" data-tags="Markdown"><span class="iconfont-archer">&#xe606;</span>Markdown</span>
+    
+        <span class="sidebar-tag-name" data-tags="spring-boot"><span class="iconfont-archer">&#xe606;</span>spring-boot</span>
+    
+        <span class="sidebar-tag-name" data-tags="java"><span class="iconfont-archer">&#xe606;</span>java</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="原创"><span class="iconfont-archer">&#xe60a;</span>原创</span>
+    
+        <span class="sidebar-category-name" data-categories="转载"><span class="iconfont-archer">&#xe60a;</span>转载</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "ChengZC"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    <script type="text/javascript" color="141,182,205" opacity='0.7' zIndex="-1" count="99" src="/lib/canvas-nest.min.js"></script>  
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":100,"height":100},"bottom":-20,"mobile":{"show":false}});</script></body>
+</html>
+
+
